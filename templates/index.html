@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Content Q&A Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Web Content Q&A Tool</h1>
+        
+        <div class="section">
+            <h2>1. Enter URLs to Ingest</h2>
+            <textarea id="urls" placeholder="Enter one URL per line..."></textarea>
+            <button onclick="ingestUrls()">Ingest Content</button>
+            <div id="ingest-status"></div>
+        </div>
+        
+        <div class="section">
+            <h2>2. Ask a Question</h2>
+            <input type="text" id="question" placeholder="Type your question...">
+            <button onclick="askQuestion()">Ask</button>
+            <div id="answers"></div>
+        </div>
+    </div>
+
+    <script>
+        async function ingestUrls() {
+            const urls = document.getElementById('urls').value.split('\n').filter(url => url.trim());
+            const response = await fetch('/ingest', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ urls })
+            });
+            const data = await response.json();
+            document.getElementById('ingest-status').innerHTML = `Ingested: ${data.ingested.join(', ')}`;
+        }
+
+        async function askQuestion() {
+            const question = document.getElementById('question').value;
+            const response = await fetch('/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question })
+            });
+            const data = await response.json();
+            let answersHtml = '<h3>Answers:</h3>';
+            for (const [url, answer] of Object.entries(data.answers)) {
+                answersHtml += `<p><strong>${url}:</strong> ${answer}</p>`;
+            }
+            document.getElementById('answers').innerHTML = answersHtml;
+        }
+    </script>
+</body>
+</html>
