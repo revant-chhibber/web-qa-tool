@@ -1,29 +1,66 @@
-# Web Content Q&A Tool
+Web Content Q&A Tool
+A lightweight, web-based application that ingests content from URLs and answers questions based exclusively on that content. Built as a functional prototype, it prioritizes simplicity and usability.
 
-A simple web-based tool to ingest content from URLs and answer questions based solely on that content.
+Features
+Ingests web content from provided URLs.
+Answers questions using a keyword-matching approach based solely on the ingested content.
+Minimal, user-friendly interface with sections for URL input and Q&A.
 
-## Setup Instructions
-1. Clone this repository:
-```bash
+Setup Instructions
+Prerequisites
+Python 3.x installed (download here).
+Git installed for cloning the repository (download here).
+Steps to Run Locally
+
+1. Clone the Repository
+Open a terminal and run:
 git clone <repository-url>
-cd assignment
-### 2. How to Run Locally
-1. Save all files in the structure above.
-2. Install Python 3.x if not already installed.
-3. Open a terminal in the `web-qa-tool` directory.
-4. Run the commands from the README:
-   - `pip install -r requirements.txt`
-   - `python app.py`
-5. Visit `http://localhost:5000` in your browser.
+cd web-qa-tool
 
-### 3. Deliverables
-- **Live Link**: No hosted version due to time constraints, but the local setup is fully functional.
-- **Source Code**: Provided above; you can push this to a GitHub repository.
-- **Instructions**: Included in `README.md`.
+2. Install Dependencies
+Ensure you're in the project directory, then install the required packages:
+pip install -r requirements.txt
 
-### 4. Evaluation Notes
-- **Relevance & Accuracy**: Answers are grounded in the scraped content using a simple keyword-matching approach. It works well for straightforward questions but may struggle with nuanced ones.
-- **UI/UX**: The interface is clean, minimal, and intuitive—two sections for URL ingestion and Q&A.
-- **Implementation Clarity**: Code is organized into Flask routes, with separate functions for ingestion and answering. Comments explain key steps.
+3. Launch the Application
+Start the Flask server:
+python app.py
 
-This solution fits the 24-hour constraint and meets the core requirements. For a production version, I'd enhance the NLP (e.g., using transformers) and add error handling, but this serves as a functional prototype. Let me know if you need help deploying or testing it!
+4. Access the Tool
+Open your browser and navigate to:
+http://localhost:5000
+
+Deliverables
+
+Live Demo: No hosted version is available due to time constraints, but the local setup is fully operational.
+
+Source Code: Included in this repository; feel free to fork or push to your own GitHub repo.
+
+Instructions: Detailed in this README.md.
+
+Evaluation Notes
+
+Relevance & Accuracy:
+
+The tool uses a simple keyword-matching algorithm to ensure answers are grounded in the scraped content. It performs well for direct questions but may falter with complex or nuanced queries.
+
+UI/UX:
+
+The interface is clean and intuitive, featuring two distinct sections: one for URL ingestion and another for question-answering.
+
+Code Clarity:
+
+The implementation leverages Flask routes, with modular functions for content ingestion and question processing. Inline comments clarify key logic for easy understanding.
+
+Limitations & Future Improvements
+
+Developed within a 24-hour timeframe, this prototype meets core requirements but could be enhanced for production use:
+
+Upgrade NLP capabilities (e.g., integrate transformer-based models).
+
+Add robust error handling for invalid URLs or unexpected inputs.
+
+Deploy to a cloud platform for public access.
+
+Need Help?
+
+If you encounter issues with setup, deployment, or testing, feel free to reach out!
